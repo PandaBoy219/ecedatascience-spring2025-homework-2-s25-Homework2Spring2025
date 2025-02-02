@@ -5,8 +5,56 @@ def histogram(input_dictionary: dict) -> list:
     # n is an integer
     # min_val and max_val are floats
     # data is a list
+    # input_dictionary: A dictionary with the following keys:
+    # data: List of floats
+    # n: integer
+    # min_val: float
+    # max_val: float
+
+    # Returns:
+    # A list representing the histogram
 
     # Write your code here
+
+    # Get values from dictionary
+    data = input_dictionary['data']
+    n = input_dictionary['n']
+    min_val = input_dictionary['min_val']
+    max_val = input_dictionary['max_val']
+
+    # Check if max and min values are the same
+    if min_val == max_val:
+        print('Error: min_val and max_val are the same value')
+        return []
+
+    # Ensure that n is a positive integer and not equal to 0
+    if n <= 0:
+        return[]
+    
+    # Swap the min and max values if neccessary 
+    if min_val > max_val:
+        min_val, max_val = max_val, min_val
+    
+    # Initialize the histogram with n number of 0s
+    hist = [0] * n
+
+    # Compute bin width
+    w = (max_val - min_val) / n
+
+    # Fill in the histogram
+    for value in data:
+        if min_val < value < max_val:
+            bin_index = int((value - min_val) / w)
+            if bin_index == n:
+                bin_index -= 1
+                hist[bin_index] += 1
+
+    return hist
+
+    
+
+    
+
 
     # return the variable storing the histogram
     # Output should be a list
