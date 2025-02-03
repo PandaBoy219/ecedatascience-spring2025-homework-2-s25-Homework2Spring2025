@@ -76,6 +76,42 @@ def combine_birthday_data(person_to_day: List[Tuple[str, int]],
 
     # Write your code here
 
+    # Define current year
+    current_year = 2025
+
+    # Convert lists into dictionaries
+    day_dict = dict(person_to_day)
+    year_dict = dict(person_to_year)
+
+    # Dictionary for final result
+    month_to_people_data = {}
+
+    # Iterate to gather data
+    for name, month in person_to_month:
+        # Get day and year 
+        day = day_dict.get(name)
+        year = year_dict.get(name)
+
+    # Compute age
+    age = current_year - year
+
+    # Create tuple
+    person_tuple = (name, day, year, age)
+
+    # Add to dictionary
+    if month in month_to_people_data:
+        # If more than one person is in the same month, store as list
+        if isinstance(month_to_people_data[month], tuple):
+            month_to_people_data[month] = [month_to_people_data[month], person_tuple]
+        else:
+            month_to_people_data[month].append(person_tuple)
+    else:
+        # If it is the first entry for the month, store as tuple
+        month_to_people_data[month] = person_tuple
+
+    return month_to_people_data
+
+
     # return the variable storing output
     # Output should be a dictionary
 
