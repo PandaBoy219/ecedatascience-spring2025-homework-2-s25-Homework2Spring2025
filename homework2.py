@@ -47,7 +47,7 @@ def histogram(input_dictionary: dict) -> list:
             bin_index = int((value - min_val) / w)
             if bin_index == n:
                 bin_index -= 1
-                hist[bin_index] += 1
+            hist[bin_index] += 1
 
     return hist
 
